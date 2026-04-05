@@ -8,35 +8,59 @@
 
 <h2>Money Manager</h2>
 
-<!-- Form -->
-<div class="form">
-    <input type="number" id="amount" placeholder="Amount">
-    <input type="date" id="date">
+<button onclick="openForm()">Add Transaction</button>
+<button onclick="downloadCSV()">Download CSV</button>
 
-    <select id="type">
-        <option value="">Type</option>
-        <option value="income">Income</option>
-        <option value="expense">Expense</option>
-    </select>
+<!-- Modal -->
+<div id="modal" class="modal">
+    <div class="modal-box">
 
-    <input type="text" id="category" placeholder="Category">
-    <input type="text" id="desc" placeholder="Description">
+        <h3>Add Transaction</h3>
 
-    <button onclick="saveTransaction()">Save</button>
+        <form id="form">
+
+            <label>Amount</label>
+            <input type="number" id="amount">
+            <small id="amountError" class="error"></small>
+
+            <label>Date</label>
+            <input type="date" id="date">
+            <small id="dateError" class="error"></small>
+
+            <label>Type</label><br>
+            <input type="radio" name="type" value="income"> Income
+            <input type="radio" name="type" value="expense"> Expense
+            <small id="typeError" class="error"></small>
+
+            <label>Sub Category</label>
+            <select id="subCategory">
+                <option value="">Select</option>
+            </select>
+            <small id="catError" class="error"></small>
+
+            <label>Description</label>
+            <input type="text" id="desc">
+
+            <br><br>
+            <button type="submit">Save</button>
+            <button type="button" onclick="closeForm()">Cancel</button>
+
+        </form>
+    </div>
 </div>
 
 <hr>
 
-<!-- Summary -->
-<h3>Summary</h3>
-<p>Income: <span id="income">0</span></p>
-<p>Expense: <span id="expense">0</span></p>
-<p>Balance: <span id="balance">0</span></p>
+<!-- Filter -->
+<select id="filter" onchange="showData()">
+    <option value="all">All</option>
+    <option value="income">Income</option>
+    <option value="expense">Expense</option>
+</select>
 
-<hr>
+<button onclick="sortByAmount()">Sort by Amount</button>
 
 <!-- Table -->
-<h3>Transactions</h3>
 <table border="1">
     <thead>
         <tr>
@@ -45,13 +69,20 @@
             <th>Category</th>
             <th>Description</th>
             <th>Amount</th>
-            <th>Actions</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody id="tableBody"></tbody>
 </table>
 
+<hr>
+
+<!-- Simple Chart -->
+<h3>Expense Chart</h3>
+<canvas id="chart" width="300" height="200"></canvas>
+
 <script src="script.js"></script>
 
 </body>
 </html>
+
