@@ -3,22 +3,26 @@ body {
     margin: 20px;
 }
 
-input, select {
-    margin: 5px;
-    padding: 5px;
+.modal {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
 }
 
-button {
-    padding: 5px 10px;
-    background: green;
-    color: white;
-    border: none;
+.modal-box {
+    background: white;
+    padding: 20px;
+    width: 300px;
+    margin: 100px auto;
 }
 
-.delete {
-    background: red;
+.error {
+    color: red;
+    font-size: 12px;
 }
 
-.edit {
-    background: orange;
+input.error-border, select.error-border {
+    border: 2px solid red;
 }
